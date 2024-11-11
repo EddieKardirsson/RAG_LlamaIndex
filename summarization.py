@@ -1,4 +1,4 @@
-from llama_index import VectorStoreIndex, SimpleDirectoryReader
+from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
 
 # Load documents
 docs = SimpleDirectoryReader(input_files=["./docs1/example - exported knowledge base.csv"]).load_data()

@@ -1,5 +1,5 @@
-from llama_index import VectorStoreIndex, SimpleDirectoryReader, ServiceContext, set_global_service_context
-from llama_index.llms import OpenAI
+from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Settings, ServiceContext, set_global_service_context
+from llama_index.llms.openai import OpenAI
 import openai
 
 openai.log = "debug"
@@ -8,8 +8,11 @@ openai.log = "debug"
 llm = OpenAI(model="gpt-3.5-turbo", temperature=0, max_tokens=1000)
 
 # Configure service context
-service_context = ServiceContext.from_defaults(llm=llm)
-set_global_service_context(service_context)
+
+Settings.llm = llm
+
+# service_context = ServiceContext.from_defaults(llm=llm)
+# set_global_service_context(service_context)
 
 # Load documents
 documents = SimpleDirectoryReader("documents").load_data()
